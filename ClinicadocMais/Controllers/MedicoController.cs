@@ -1,0 +1,59 @@
+﻿using ClinicadocMais.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
+
+namespace ClinicadocMais.Controllers
+{
+    [Route("[controller]")]
+    [ApiController]
+    public class MedicoController : ControllerBase
+    {
+        public static List<MedicoModel> listaMedicos = new List<MedicoModel>();
+
+        [HttpPost("cadastroMedico")]
+            public string cadastrarMedico([FromBody] MedicoModel medicoCadastro)
+        {
+            listaMedicos.Add(medicoCadastro);
+            return $"Dr. {medicoCadastro.nome} cadatrado com sucesso";
+         
+        }
+        //LISTAR MÉDICO
+        [HttpGet("listarMedicos")]
+        List<MedicoModel> listarMedicos()
+        {
+            return (listaMedicos);
+        }
+
+        //BUSCAR MÉDICO 
+
+        [HttpGet("buscarMedico/{crm}")]
+        public MedicoModel? buscarMedico(string crm)
+        {
+            return listaMedicos.FirstOrDefault(m => m.crm == crm);
+        }
+
+        //EDITAR MÉDICO 
+
+        [HttpPut("editarMedico/{crm}")]
+        public string editarMedico(string crm, [FromBody] MedicoModel medicoEditado)
+        {
+            MedicoModel? medico = listaMedicos.FirstOrDefault(m => m.crm == crm);
+
+            if (medico == null)
+            {
+                return "Médico não encontrado.";
+            }
+
+            medico.nome = medicoEditado.nome;
+            medico.Especialidade = medicoEditado.Especialidade;
+            medico.Telefone = medicoEditado.Telefone;
+
+            return "Médico atualizado com sucesso.";
+        }
+
+    }
+}
+
+
+
