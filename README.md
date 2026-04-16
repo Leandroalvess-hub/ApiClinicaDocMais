@@ -22,7 +22,7 @@ O Clínica Doc+ é uma aplicação básica voltada para o controle de rotinas cl
 
 * Visual Studio Code instalado
 
-#▶️ Como Executar
+# ▶️ Como Executar
 
 * Clone o repositório Abra o projeto no VS Code Pressione F5 para iniciar a aplicação.
 
