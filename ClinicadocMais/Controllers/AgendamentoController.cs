@@ -1,5 +1,4 @@
-﻿
-using ClinicadocMais.Models;
+﻿using ClinicadocMais.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ClinicadocMais.Controllers
@@ -8,7 +7,7 @@ namespace ClinicadocMais.Controllers
     [ApiController]
     public class AgendamentoController : ControllerBase
     {
-        public static List<AgendamentoModel> agendamentoModels = new List<AgendamentoModel>();
+        public static List<AgendamentoModel> listaDeAgendamentos = new List<AgendamentoModel>();
 
         [HttpPost("agendarconsulta")]
         public async Task<IActionResult> AgendarConsulta(
@@ -30,7 +29,7 @@ namespace ClinicadocMais.Controllers
 
                 agendamentoAtual.datahoraAgendamento = dataHoraAgendada;
 
-                agendamentoModels.Add(agendamentoAtual);
+                listaDeAgendamentos.Add(agendamentoAtual);
 
                 return Created("", agendamentoAtual);
             }
