@@ -12,32 +12,19 @@ namespace ClinicaDocMais.Controllers
     public class PacienteController : Controller
     {
         public static List<PacienteModel> listaPacientes = new List<PacienteModel>();
-        [HttpGet("retornoCasa")]
-        public string casa()
+
+        [HttpPost("cadastrarPaciente")]
+        public async Task<ActionResult> Cadastrarpaciente([FromBody] PacienteModel pacienteCadastrado)
         {
-            return "casa";
+            try
+            {
+                listaPaciente.Add(pacienteCadastrado);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Erro inexperado: "ex.Message);
+            }
         }
-
-
-
-        [HttpGet("nomePaciente")]
-        public string paciente()
-        {
-            string nome = "Giovanni";
-            return "Paciente: " + nome;
-        }
-
-
-
-        [HttpGet("listaPacientes")]
-        public List<string> listaNome()
-        {
-            List<string> listaPacientes = new List<string>();
-            listaPacientes = ["Giovanni", "Carlos", "Pedro"];
-            return listaPacientes;
-        }
-
-
 
         [HttpGet("pacientes")]
         public List<PacienteModel> listarPacientes()

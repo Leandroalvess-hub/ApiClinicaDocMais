@@ -18,22 +18,20 @@ namespace ClinicadocMais.Controllers
             return $"Dr. {medicoCadastro.nome} cadatrado com sucesso";
          
         }
-        //LISTAR MÉDICO
+
         [HttpGet("listarMedicos")]
-        List<MedicoModel> listarMedicos()
+        public List<MedicoModel> listarMedicos()
         {
             return (listaMedicos);
         }
 
-        //BUSCAR MÉDICO 
-
+    
         [HttpGet("buscarMedico/{crm}")]
         public MedicoModel? buscarMedico(string crm)
         {
             return listaMedicos.FirstOrDefault(m => m.crm == crm);
         }
 
-        //EDITAR MÉDICO 
 
         [HttpPut("editarMedico/{crm}")]
         public string editarMedico(string crm, [FromBody] MedicoModel medicoEditado)
