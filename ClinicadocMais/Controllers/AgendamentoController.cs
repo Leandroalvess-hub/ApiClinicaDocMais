@@ -1,4 +1,5 @@
-﻿using ClinicadocMais.Models;
+﻿using ClinicadocMais.DTOs;
+using ClinicadocMais.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ClinicadocMais.Controllers
@@ -10,28 +11,21 @@ namespace ClinicadocMais.Controllers
         public static List<AgendamentoModel> listaDeAgendamentos = new List<AgendamentoModel>();
 
         [HttpPost("agendarconsulta")]
-        public async Task<IActionResult> AgendarConsulta(
-            [FromBody] PacienteModel pacienteAgendado,
-            MedicoModel medicoAgendado,
-            DateTime dataHoraAgendada)
+        public async Task<IActionResult> AgendarConsulta([FromBody] AgendamentoDTO dadosAgendamento)
         {
             try
             {
-                AgendamentoModel agendamentoAtual = new AgendamentoModel();
+                AgendamentoModel agendamento = new AgendamentoModel();
+                agendamento.nomePaciente = dadosAgendamento.paciente?.nome;
+                agendamento.nomeMedico = dadosAgendamento.medico?.nome;
+                agendamento.cpfPaciente = dadosAgendamento.paciente?.cpf;
+                agendamento.telefonePaciente = dadosAgendamento.paciente?.telefone;
+                agendamento.crmMedico = dadosAgendamento.medico?.crm;
+                agendamento.especialidadeMedico = dadosAgendamento.medico?.especialidade;
+                agendamento.dataHoraAgendamento = dadosAgendamento.dataHoraAgendada;
 
-                agendamentoAtual.nomePaciente = pacienteAgendado.nome;
-                agendamentoAtual.telefonePaciente = pacienteAgendado.telefone;
-                agendamentoAtual.cpfPaciente = pacienteAgendado.cpf;
-
-                agendamentoAtual.nomeMedico = medicoAgendado.nome;
-                agendamentoAtual.crmMedico = medicoAgendado.crm;
-                agendamentoAtual.especialidadeMedico = medicoAgendado.especialidade;
-
-                agendamentoAtual.datahoraAgendamento = dataHoraAgendada;
-
-                listaDeAgendamentos.Add(agendamentoAtual);
-
-                return Created("", agendamentoAtual);
+                listaDeAgendamentos.Add(agendamento);
+                return Created();
             }
             catch (Exception ex)
             {

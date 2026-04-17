@@ -18,11 +18,12 @@ namespace ClinicaDocMais.Controllers
         {
             try
             {
-                listaPaciente.Add(pacienteCadastrado);
+                listaPacientes.Add(pacienteCadastrado);
+                return Ok();
             }
             catch (Exception ex)
             {
-                return BadRequest("Erro inexperado: "ex.Message);
+                return BadRequest("Erro inexperado: "+ ex.Message);
             }
         }
 

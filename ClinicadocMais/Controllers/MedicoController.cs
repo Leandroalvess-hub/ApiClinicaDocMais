@@ -44,7 +44,7 @@ namespace ClinicadocMais.Controllers
             }
 
             medico.nome = medicoEditado.nome;
-            medico.Especialidade = medicoEditado.Especialidade;
+            medico.especialidade = medicoEditado.especialidade;
             medico.Telefone = medicoEditado.Telefone;
 
             return "Médico atualizado com sucesso.";
