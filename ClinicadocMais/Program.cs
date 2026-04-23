@@ -1,4 +1,7 @@
 
+using ClinicadocMais.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace ClinicadocMais
 {
     public class Program
@@ -6,8 +9,14 @@ namespace ClinicadocMais
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Services.AddDbContext<ClinicaContext>(options =>
+            options.UseMySql(builder.Configuration.GetConnectionString("ConexaoPadrao"), new MySqlServerVersion(new Version(8, 0, 23))));
+
             builder.Services.AddSwaggerGen();
             // Add services to the container.
+
+            
 
             builder.Services.AddControllers();
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi

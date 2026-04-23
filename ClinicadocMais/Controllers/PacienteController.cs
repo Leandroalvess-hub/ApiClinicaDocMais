@@ -57,7 +57,6 @@ namespace ClinicaDocMais.Controllers
                     paciente.nome = pacienteEditado.nome;
                     paciente.telefone = pacienteEditado.telefone;
                     paciente.email = pacienteEditado.email;
-                    paciente.prioridade = pacienteEditado.prioridade;
                     paciente.dataNascimento = pacienteEditado.dataNascimento;
                     return $"Paciente {paciente.nome},cpf anterior: {id} editado com sucesso";
                 }

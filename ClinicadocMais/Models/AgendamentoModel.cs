@@ -2,8 +2,8 @@
 {
     public class AgendamentoModel
     {
-     
-          public string? nomePaciente { get; set; }
+            public string? id { get; set; }
+            public string? nomePaciente { get; set; }
             public string? telefonePaciente { get; set;}
             public string? cpfPaciente { get; set;}
             public string? nomeMedico { get; set; }
