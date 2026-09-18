@@ -57,6 +57,5 @@ Notificações de consultas
 
 * Leandro Alves de Abreu
 
-📧 leandro@gmail.com
+📧 leandroalves644@gmail.com
 
-📱 (81) 98888-9999
